@@ -1,0 +1,42 @@
+version: '3.8'
+
+networks:
+  xmas-project:
+
+services:
+
+  web:
+    build:
+      context: docker/php_server/.
+      dockerfile: Dockerfile
+    container_name: php74-container
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/xmas-project
+      - .composer_cache:/var/cache/composer
+    depends_on:
+      - database
+    environment:
+      DB_USER: "root"
+      DB_HOSTNAME: "hostname"
+      DB_PASSWORD: "password"
+      DB_NAME: "xmasproject"
+    networks:
+      xmas-project:
+
+  database:
+    image: mysql:8
+    container_name: mysql8-container
+    ports:
+      - "4306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always # always restart unless stopped manually
+    environment:
+      MYSQL_USER: "root"
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "xmasproject"
+    networks:
+      xmas-project:
