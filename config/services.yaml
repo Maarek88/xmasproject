@@ -31,3 +31,7 @@ services:
     # please note that last definitions always *replace* previous ones
     sensio_framework_extra.view.listener:
         alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener
+
+    App\Command\DownloadFileCommand:
+        arguments:
+            $downloadPath: '%kernel.project_dir%/var/tmp/'
