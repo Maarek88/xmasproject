@@ -77,6 +77,8 @@
         "codeception/module-rest": "^1.2",
         "codeception/module-symfony": "^1.6",
         "codeception/module-webdriver": "^1.1",
+        "phpmd/phpmd": "^2.9",
+        "squizlabs/php_codesniffer": "*",
         "symfony/maker-bundle": "^1.26"
     }
 }
