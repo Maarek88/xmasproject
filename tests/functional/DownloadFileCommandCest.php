@@ -14,7 +14,12 @@ class DownloadFileCommandCest
 
     public function downloadFile(ApiTester $I)
     {
-        $I->runSymfonyConsoleCommand('app:download-file', ['url' => 'https://via.placeholder.com/350x150'], [], Command::SUCCESS);
+        $I->runSymfonyConsoleCommand(
+            'app:download-file',
+            ['url' => 'https://via.placeholder.com/350x150'],
+            [],
+            Command::SUCCESS
+        );
     }
 
     public function downloadFileIncorrectUrl(ApiTester $I)

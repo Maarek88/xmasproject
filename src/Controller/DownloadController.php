@@ -2,15 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Download;
 use App\Repository\DownloadRepository;
-use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Doctrine\ORM\EntityManagerInterface;
+use FOS\RestBundle\View\View;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 
 class DownloadController extends AbstractFOSRestController
 {
@@ -29,7 +27,7 @@ class DownloadController extends AbstractFOSRestController
      * @Rest\Get("/api/download")
      * @return View
      */
-    public function getAllDownloads()
+    public function getAllDownloads(): View
     {
         $downloads = $this->downloadRepository->findAllNotDeleted();
 
@@ -42,11 +40,11 @@ class DownloadController extends AbstractFOSRestController
      * @param int $id
      * @return View
      */
-    public function deleteDownload(int $id)
+    public function deleteDownload(int $id): View
     {
         $download = $this->downloadRepository->findOneById($id);
 
-        if(!$download) {
+        if (!$download) {
             throw new NotFoundHttpException('Download not found');
         }
 

@@ -46,7 +46,7 @@ class DownloadFileCommand extends Command
             ->addArgument('url', InputArgument::REQUIRED, 'Provide file url to download.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $url = $input->getArgument('url');
 
@@ -55,13 +55,13 @@ class DownloadFileCommand extends Command
             return Command::FAILURE;
         }
 
-        $urlComponents = parse_url($url);
-        $filename = basename($url);
-        $filePathInfo = pathinfo($filename);
+        $urlComponents    = parse_url($url);
+        $filename         = basename($url);
+        $filePathInfo     = pathinfo($filename);
         $downloadFilePath = $this->downloadPath.uniqid().(!empty($filePathInfo['extension']) && strpos(
-                $urlComponents['host'],
-                '.'.$filePathInfo['extension']
-            ) === false ? '.'.$filePathInfo['extension'] : '');
+            $urlComponents['host'],
+            '.'.$filePathInfo['extension']
+        ) === false ? '.'.$filePathInfo['extension'] : '');
 
         if ($this->downloadService->downloadFromUrl($url, $downloadFilePath)) {
             $this->imageOptimizerService->resize($downloadFilePath);

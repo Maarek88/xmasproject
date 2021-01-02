@@ -5,16 +5,13 @@ namespace App\Entity;
 use App\Repository\DownloadRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\SoftDeletableInterface;
-use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletableTrait;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletableTrait;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass=DownloadRepository::class)
- *
- * @Serializer\ExclusionPolicy("all")
  */
 class Download implements
     SoftDeletableInterface,
@@ -27,21 +24,18 @@ class Download implements
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Serializer\Expose
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Serializer\Expose
      */
     private $filePath;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Serializer\Expose
      */
     private $fileUrl;
 

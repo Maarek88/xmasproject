@@ -63,7 +63,7 @@ class ImageOptimizerService
         $this->fileSystem->rename($tmpFilename, $filename, true);
     }
 
-    public function getImageExtension(string $filename)
+    public function getImageExtension(string $filename): ?string
     {
         return self::$extensions[exif_imagetype($filename)] ?? null;
     }

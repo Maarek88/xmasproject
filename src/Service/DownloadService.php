@@ -11,7 +11,7 @@ class DownloadService
 
     public function __construct(Filesystem $fileSystem)
     {
-        $this->fileSystem   = $fileSystem;
+        $this->fileSystem = $fileSystem;
     }
 
     public function downloadFromUrl(string $url, string $downloadFilePath): bool

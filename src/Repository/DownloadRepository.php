@@ -22,7 +22,7 @@ class DownloadRepository extends ServiceEntityRepository
     /**
      * @return Download[] Returns an array of Download objects
      */
-    public function findAllNotDeleted()
+    public function findAllNotDeleted(): array
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.deletedAt IS NULL')
