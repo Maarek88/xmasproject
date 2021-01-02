@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 class BookController extends AbstractFOSRestController
 {
     private $bookRepository;
@@ -37,7 +36,7 @@ class BookController extends AbstractFOSRestController
      * @param Request $request
      * @return View
      */
-    public function addBook(Request $request)
+    public function addBook(Request $request): View
     {
         $data = json_decode($request->getContent(), true);
         $form = $this->createForm(BookType::class, $book = new Book());
@@ -59,7 +58,7 @@ class BookController extends AbstractFOSRestController
      * @Rest\Get("/api/book")
      * @return View
      */
-    public function getAllBooks()
+    public function getAllBooks(): View
     {
         $books = $this->bookRepository->findAllNotDeleted();
 
@@ -71,7 +70,7 @@ class BookController extends AbstractFOSRestController
      * @param string $uuid
      * @return View
      */
-    public function getOneBook(string $uuid)
+    public function getOneBook(string $uuid): View
     {
         $book = $this->bookRepository->findOneByUuid($uuid);
 
@@ -88,7 +87,7 @@ class BookController extends AbstractFOSRestController
      * @param Request $request
      * @return View
      */
-    public function updateBook(string $uuid, Request $request)
+    public function updateBook(string $uuid, Request $request): View
     {
         $data = json_decode($request->getContent(), true);
         $book = $this->bookRepository->findOneByUuid($uuid);
@@ -122,7 +121,7 @@ class BookController extends AbstractFOSRestController
      * @param string $uuid
      * @return View
      */
-    public function deleteBook(string $uuid)
+    public function deleteBook(string $uuid): View
     {
         $book = $this->bookRepository->findOneBy(['uuid' => $uuid]);
 

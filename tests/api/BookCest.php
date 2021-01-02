@@ -2,7 +2,6 @@
 
 namespace App\Tests;
 
-use App\Tests\ApiTester;
 use Codeception\Util\HttpCode;
 
 class BookCest
@@ -29,7 +28,6 @@ class BookCest
     public function _before(ApiTester $I)
     {
     }
-
 
     public function addBook(ApiTester $I)
     {
@@ -65,14 +63,14 @@ class BookCest
         list($uuid) = $I->grabDataFromResponseByJsonPath('$.uuid');
 
         $I->haveHttpHeader('Content-Type', 'application/json');
-        $I->sendGet('/book/' . $uuid);
+        $I->sendGet('/book/'.$uuid);
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseIsJson();
     }
 
     public function getOneBookWithIncorrectUuid(ApiTester $I)
     {
-       $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendGet('/book/incorrectuuid');
         $I->seeResponseCodeIs(HttpCode::NOT_FOUND);
     }

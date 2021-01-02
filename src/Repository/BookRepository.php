@@ -22,7 +22,7 @@ class BookRepository extends ServiceEntityRepository
     /**
      * @return Book[] Returns an array of Book objects
      */
-    public function findAllNotDeleted()
+    public function findAllNotDeleted(): array
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.deletedAt IS NULL')
@@ -39,5 +39,4 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
 }
