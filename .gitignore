@@ -240,3 +240,7 @@ mysql/*
 docker-compose.yml
 
 # End of https://www.toptal.com/developers/gitignore/api/symfony,phpstorm,phpstorm+all
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
